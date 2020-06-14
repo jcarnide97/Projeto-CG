@@ -1,0 +1,11 @@
+uniform vec3 Direcao;
+varying vec3 vNormal;
+uniform vec4 cor;
+uniform sampler2D text;
+
+void main(void) {
+    vec3  nNormal= normalize(vNormal) ;
+    vec3 corTex = texture2D(text, gl_TexCoord[0].st).rgb;
+    float intensity = max(dot(nNormal, Direcao), 0.0);
+    gl_FragColor=intensity*cor;
+}
